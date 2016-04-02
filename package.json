@@ -10,6 +10,34 @@
     "watch": "npm-watch"
   },
   "devDependencies": {
-    "npm-watch": "^0.1.3"
-  }
+    "hyperkv": "^1.5.2",
+    "hyperlog": "^4.8.1",
+    "level": "^1.4.0",
+    "npm-watch": "^0.1.3",
+    "subleveldown": "^2.1.0",
+    "tape": "^4.5.1"
+  },
+  "dependencies": {
+    "kefir": "^3.2.1",
+    "wget-q0": "^1.0.1"
+  },
+  "name": "my-ip-kv",
+  "description": "associate your ip with a device name, in a kv-like structure (e.g. [level](https://www.npmjs.com/package/level) or [hyperkv](https://github.com/substack/hyperkv) - anything that exposes a method `.put(key, value, cb)`).",
+  "version": "1.0.0",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elsehow/my-ip-kv.git"
+  },
+  "keywords": [
+    "ip",
+    "level",
+    "kv"
+  ],
+  "bugs": {
+    "url": "https://github.com/elsehow/my-ip-kv/issues"
+  },
+  "homepage": "https://github.com/elsehow/my-ip-kv#readme"
 }
