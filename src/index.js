@@ -24,7 +24,10 @@ module.exports = (i, u) => {
     })
   }
 
-  var iS = Kefir.interval(i)
+  var iS = Kefir.merge([
+        Kefir.constant(1),
+        Kefir.interval(i),
+      ])
       .map(x => u)
       .flatMap(get)
 
