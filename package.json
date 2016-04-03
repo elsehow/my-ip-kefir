@@ -10,19 +10,15 @@
     "watch": "npm-watch"
   },
   "devDependencies": {
-    "hyperkv": "^1.5.2",
-    "hyperlog": "^4.8.1",
-    "level": "^1.4.0",
     "npm-watch": "^0.1.3",
-    "subleveldown": "^2.1.0",
     "tape": "^4.5.1"
   },
   "dependencies": {
+    "ip-address": "^5.8.0",
     "kefir": "^3.2.1",
-    "wget-q0": "^1.0.1"
+    "request": "^2.69.0"
   },
-  "name": "my-ip-kv",
-  "description": "associate your ip with a device name, in a kv-like structure (e.g. [level](https://www.npmjs.com/package/level) or [hyperkv](https://github.com/substack/hyperkv) - anything that exposes a method `.put(key, value, cb)`).",
+  "name": "my-ip-kefir",
   "version": "1.0.1",
   "directories": {
     "test": "test"

@@ -1,16 +1,10 @@
-var q0 = require('wget-q0')
+var request = require('request');
 var Kefir = require('kefir')
+var addr = require('ip-address')
+var Address6 = addr.Address6;
+var Address4 = addr.Address4;
 
-// kv-like object kv
-// device name n
-// update ip interval i
-module.exports = (kv, n, i, u) => {
-
-  if (!kv || !kv.put)
-    throw new Error('please provide a kv-like object!')
-
-  if (!n)
-    throw new Error('please enter a device name!')
+module.exports = (i, u) => {
 
   if (!i)
     i = 1000
@@ -18,25 +12,44 @@ module.exports = (kv, n, i, u) => {
   if (!u)
     u = 'http://ipecho.net/plain'
 
-  function putS (ip) {
-    return Kefir.fromNodeCallback(cb => {
-      kv.put(n, ip, cb)
+  function get (url) {
+    return Kefir.stream(emitter => {
+      request(url, (error, response, body) => {
+        if (!error && response.statusCode == 200) {
+          emitter.emit(body) // Show the HTML for the Google homepage. 
+        }
+        else
+          emitter.error(error)
+      })
     })
   }
 
-  var iS = q0(i, 'http://ipecho.net/plain')
+  var iS = Kefir.interval(i)
+      .map(x => u)
+      .flatMap(get)
+
+  var i4S = iS
+      .filter(a => {
+        var ad = new Address4(a)
+        return ad.isValid()
+      })
+  var i6S = iS
+      .filter(a => {
+        var ad = new Address6(a)
+        return ad.isValid()
+      })
+
+
+  var i46S = Kefir.merge([i6S, i4S])
 
   var uiS = Kefir.stream(emitter => {
-    iS.onError(e => {
+    i46S.onError(e => {
         emitter.emit(null)
       })
-    iS.onValue(e => {
+    i46S.onValue(e => {
       emitter.emit(e)
     })
   })
 
   return uiS.skipDuplicates()
-    .flatMap(ip => {
-    return putS(ip)
-  })
 }

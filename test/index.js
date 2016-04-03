@@ -11,27 +11,29 @@ var kv = hyperkv({
 var test = require('tape')
 var mod = require('..')
 
-test('errors when i dont give name or kv', t => {
-  t.plan(2)
-  t.throws(() => {
-    var S = mod(db)
-  })
-  t.throws(() => {
-    var S = mod({}, 'juliastreet')
-  })
-
-})
-
-test('sets ip' , t => {
+test('gets ip' , t => {
   t.plan(1)
   var mod = require('..')
-  var S = mod(kv, 'juliastreet')
+  var S = mod()
   S.onValue(i => {
-    t.ok(i, 'put an ip address')
+    t.ok(i, 'get an ip address')
     t.end()
-    process.exit(0)
   })
   S.onError(e => {
     t.notOk(e, 'shouldnt see an error!')
   })
+})
+
+test('validates ip' , t => {
+  var mod = require('..')
+  var S = mod(1000, 'http://cnn.com')
+  S.onValue(i => {
+    t.notOk(i, 'we shouldnt see this trash')
+    t.end()
+    process.exit(0)
+  })
+  setTimeout(() => {
+    t.end()
+    process.exit(0)
+  }, 1000)
 })
