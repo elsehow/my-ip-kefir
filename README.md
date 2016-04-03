@@ -1,6 +1,6 @@
 # my-ip-kefir
 
-get a kefir stream of your IP address.
+a kefir stream of your IP addresses
 
 ## example
 ```javascript
