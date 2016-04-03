@@ -35,5 +35,6 @@
   "bugs": {
     "url": "https://github.com/elsehow/my-ip-kv/issues"
   },
-  "homepage": "https://github.com/elsehow/my-ip-kv#readme"
+  "homepage": "https://github.com/elsehow/my-ip-kv#readme",
+  "description": "get a kefir stream of your IP address."
 }
