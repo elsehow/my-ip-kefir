@@ -23,7 +23,7 @@
   },
   "name": "my-ip-kv",
   "description": "associate your ip with a device name, in a kv-like structure (e.g. [level](https://www.npmjs.com/package/level) or [hyperkv](https://github.com/substack/hyperkv) - anything that exposes a method `.put(key, value, cb)`).",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "directories": {
     "test": "test"
   },

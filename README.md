@@ -14,7 +14,7 @@ var kv = hyperkv({
   log: log,
   db: sub(db, 'k')
 })
-var ipkv = require('ip-kv-like')
+var ipkv = require('my-ip-kv')
 
 ipkv(kv, 'juliastreet').log('i put a new IP address in the kv!')
 ```
